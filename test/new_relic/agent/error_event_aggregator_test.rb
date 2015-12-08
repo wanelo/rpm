@@ -56,7 +56,10 @@ module NewRelic
         assert_equal "Controller/blogs/index", intrinsics['transactionName']
         assert_equal 0.1, intrinsics['duration']
         assert_equal 80, intrinsics['port']
+        assert_equal "GUID", intrinsics[:"nr.transactionGuid"]
+        assert_equal "REFERRING_GUID", intrinsics[:"nr.referringTransactionGuid"]
       end
+
 
       def test_respects_max_samples_stored
         with_config :'error_collector.max_event_samples_stored' => 5 do
